@@ -31,14 +31,15 @@
             this.QuestionContent = new System.Windows.Forms.Label();
             this.Btn_NextQuestion = new System.Windows.Forms.Button();
             this.OptionList = new System.Windows.Forms.CheckedListBox();
+            this.Message = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // QuestionContent
             // 
-            this.QuestionContent.AutoSize = true;
-            this.QuestionContent.Location = new System.Drawing.Point(99, 90);
+            this.QuestionContent.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.QuestionContent.Location = new System.Drawing.Point(97, 35);
             this.QuestionContent.Name = "QuestionContent";
-            this.QuestionContent.Size = new System.Drawing.Size(41, 12);
+            this.QuestionContent.Size = new System.Drawing.Size(400, 174);
             this.QuestionContent.TabIndex = 0;
             this.QuestionContent.Text = "label1";
             this.QuestionContent.Click += new System.EventHandler(this.label1_Click);
@@ -55,24 +56,39 @@
             // 
             // OptionList
             // 
+            this.OptionList.CheckOnClick = true;
             this.OptionList.FormattingEnabled = true;
-            this.OptionList.Location = new System.Drawing.Point(101, 149);
+            this.OptionList.Location = new System.Drawing.Point(101, 212);
             this.OptionList.Name = "OptionList";
-            this.OptionList.Size = new System.Drawing.Size(237, 180);
+            this.OptionList.Size = new System.Drawing.Size(396, 180);
             this.OptionList.TabIndex = 2;
+            this.OptionList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.OptionList_ItemCheck);
+            this.OptionList.SelectedIndexChanged += new System.EventHandler(this.OptionList_SelectedIndexChanged);
+            // 
+            // Message
+            // 
+            this.Message.Font = new System.Drawing.Font("宋体", 10.5F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Message.ForeColor = System.Drawing.Color.Red;
+            this.Message.Location = new System.Drawing.Point(101, 412);
+            this.Message.Name = "Message";
+            this.Message.Size = new System.Drawing.Size(396, 41);
+            this.Message.TabIndex = 3;
+            this.Message.Text = "label1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 457);
+            this.ClientSize = new System.Drawing.Size(684, 462);
+            this.Controls.Add(this.Message);
             this.Controls.Add(this.OptionList);
             this.Controls.Add(this.Btn_NextQuestion);
             this.Controls.Add(this.QuestionContent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -81,6 +97,7 @@
         private System.Windows.Forms.Label QuestionContent;
         private System.Windows.Forms.Button Btn_NextQuestion;
         private System.Windows.Forms.CheckedListBox OptionList;
+        private System.Windows.Forms.Label Message;
     }
 }
 

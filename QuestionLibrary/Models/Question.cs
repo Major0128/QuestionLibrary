@@ -18,6 +18,8 @@ namespace QuestionLibrary.Models
         public string Option_F { get; set; }
         public string Option_Right { get; set; }
 
+        public bool isMultipleChoice { get; set; }
+
         public List<Option> optionList = new List<Option>();
 
         public Question()
@@ -27,6 +29,7 @@ namespace QuestionLibrary.Models
 
         public Question(string a, string b, string c, string d, string e = "", string f = "")
         {
+
             Option_A = a;
             optionList.Add(new Option()
             {
@@ -73,6 +76,5 @@ namespace QuestionLibrary.Models
 
 
         }
-
     }
 }

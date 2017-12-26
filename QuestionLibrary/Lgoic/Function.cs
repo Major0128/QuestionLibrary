@@ -20,22 +20,32 @@ namespace QuestionLibrary.Lgoic
             string filepath = @"../../Res/安装质量监督人员考试题库.xls";
             var data = ExcelHelper.ReadExcel(filepath);
 
-            int[] QuestionNumbers = getRandomNum(100, 1, data.Rows.Count);
-            QuestionNumbers = QuestionNumbers.OrderBy(it => it).ToArray();
+            int[] QuestionSingleNumbers = getRandomNum(70, 1, 510);
+            int[] QuestionMultipleNumbers = getRandomNum(30, 511, data.Rows.Count);
+
+            QuestionSingleNumbers = QuestionSingleNumbers.OrderBy(it => it).ToArray();
+            QuestionMultipleNumbers = QuestionMultipleNumbers.OrderBy(it => it).ToArray();
+            List<int> QuestionNumbers = new List<int>();
+            QuestionNumbers.AddRange(QuestionSingleNumbers);
+            QuestionNumbers.AddRange(QuestionMultipleNumbers);
             foreach (var item in QuestionNumbers)
             {
                 DataRow datarow = data.Rows[item];
+                bool IsMultipleChoice = bool.Parse(datarow["是否多选题"].ToString());
+                string qusetionType = IsMultipleChoice ? "多选题：" : "单选题：";
+                string answerE = datarow["答案5"].ToString() == "" ? "" : "E:" + datarow["答案5"].ToString();
+                string answerF = datarow["答案6"].ToString() == "" ? "" : "F:" + datarow["答案6"].ToString();
                 Result.Add(new Question(
-                    datarow["A"].ToString(),
-                    datarow["B"].ToString(),
-                    datarow["C"].ToString(),
-                    datarow["D"].ToString(),
-                    datarow["答案5"].ToString(),
-                    datarow["答案6"].ToString()
+                    "A:" + datarow["A"].ToString(),
+                    "B:" + datarow["B"].ToString(),
+                    "C:" + datarow["C"].ToString(),
+                    "D:" + datarow["D"].ToString(),
+                   answerE, answerF
                     )
                 {
-                    QusetionContent = datarow["题目内容"].ToString(),
-                    Option_Right = datarow["正确答案"].ToString()
+                    QusetionContent = qusetionType + datarow["题目内容"].ToString(),
+                    Option_Right = datarow["正确答案"].ToString(),
+                    isMultipleChoice = IsMultipleChoice,
                 });
             }
             return Result;
